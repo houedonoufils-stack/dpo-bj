@@ -195,3 +195,15 @@ details p { margin-top: 8px; color: var(--mut); }
 .liste { padding-left: 18px; margin: 6px 0 0; }
 .liste li { margin-bottom: 6px; }
 section[id] { scroll-margin-top: 80px; }
+
+/* ===== Comprendre le Livre V ===== */
+.g2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.h3 { font-size: 22px; margin-top: 10px; }
+.fiche { scroll-margin-top: 80px; }
+.scroll { overflow-x: auto; }
+.tableau.comp th, .tableau.comp td { width: auto; }
+.tableau.comp thead th { background: var(--ink); color: #fff; }
+.tableau.comp { min-width: 640px; }
+@media (max-width: 600px) {
+  .tableau.comp th, .tableau.comp td { display: table-cell; }
+}

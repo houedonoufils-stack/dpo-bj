@@ -10,6 +10,7 @@ use App\Http\Controllers\Site\AccueilController;
 use App\Http\Controllers\Site\DiagnosticController;
 use App\Http\Controllers\Site\LogicielController;
 use App\Http\Controllers\Site\SolutionsController;
+use App\Http\Controllers\Site\LivreVController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::name('site.')->group(function () {
     Route::get('/logiciel/mobile', [LogicielController::class, 'mobile'])->name('mobile');
     Route::get('/solutions/secteurs', [SolutionsController::class, 'secteurs'])->name('secteurs');
     Route::get('/services', [SolutionsController::class, 'services'])->name('services');
-    Route::view('/livre-v', 'site.page', ['titre' => 'Comprendre le Livre V'])->name('livre-v');
+    Route::get('/livre-v', LivreVController::class)->name('livre-v');
     Route::view('/formulaires', 'site.page', ['titre' => 'Formulaires APDP'])->name('formulaires');
     Route::view('/ressources', 'site.page', ['titre' => 'Ressources et blog'])->name('ressources');
     Route::view('/academie', 'site.page', ['titre' => 'Académie'])->name('academie');
