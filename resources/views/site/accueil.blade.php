@@ -95,7 +95,7 @@
             </p>
             <div class="grid g4" style="margin-top:18px">
                 @foreach ($secteurs as $secteur)
-                    <a class="card" href="{{ route('site.secteurs') }}" style="text-decoration:none">
+                    <a class="card" href="{{ route('site.secteurs') }}#{{ $secteur['slug'] }}" style="text-decoration:none">
                         <h3>{{ $secteur['titre'] }}</h3>
                         <p class="mut small">{{ $secteur['texte'] }}</p>
                     </a>

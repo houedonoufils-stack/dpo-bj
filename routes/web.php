@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\AccueilController;
 use App\Http\Controllers\Site\DiagnosticController;
 use App\Http\Controllers\Site\LogicielController;
+use App\Http\Controllers\Site\SolutionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,8 @@ Route::name('site.')->group(function () {
     Route::post('/diagnostic', [DiagnosticController::class, 'evaluer'])->name('diagnostic.evaluer');
     Route::get('/logiciel', [LogicielController::class, 'web'])->name('logiciel');
     Route::get('/logiciel/mobile', [LogicielController::class, 'mobile'])->name('mobile');
-    Route::view('/solutions/secteurs', 'site.page', ['titre' => 'Solutions par secteur'])->name('secteurs');
-    Route::view('/services', 'site.page', ['titre' => "Services d'accompagnement"])->name('services');
+    Route::get('/solutions/secteurs', [SolutionsController::class, 'secteurs'])->name('secteurs');
+    Route::get('/services', [SolutionsController::class, 'services'])->name('services');
     Route::view('/livre-v', 'site.page', ['titre' => 'Comprendre le Livre V'])->name('livre-v');
     Route::view('/formulaires', 'site.page', ['titre' => 'Formulaires APDP'])->name('formulaires');
     Route::view('/ressources', 'site.page', ['titre' => 'Ressources et blog'])->name('ressources');

@@ -32,16 +32,7 @@ class AccueilController extends Controller
                 ['titre' => 'Souscription', 'texte' => "À la fin de l'essai ; export complet sous 30 jours en fin de contrat."],
             ],
 
-            'secteurs' => [
-                ['titre' => 'Banque', 'texte' => 'Connaissance client, crédit, lutte contre le blanchiment, règles BCEAO.'],
-                ['titre' => 'Microfinance et monnaie électronique', 'texte' => 'Dossiers de prêt, agents, portefeuilles Mobile Money.'],
-                ['titre' => 'Assurance', 'texte' => 'Souscription, sinistres, données de santé des assurés.'],
-                ['titre' => 'Télécoms', 'texte' => 'Abonnés, identification des cartes SIM, données de trafic.'],
-                ['titre' => 'Santé', 'texte' => 'Dossier patient, secret médical, recherche en santé.'],
-                ['titre' => 'Éducation', 'texte' => 'Élèves mineurs, résultats, consentement des parents.'],
-                ['titre' => 'Secteur public et communes', 'texte' => 'DPO obligatoire, état civil, interconnexions de fichiers.'],
-                ['titre' => 'Transport et tourisme', 'texte' => 'Fichiers de passagers, réservations, transferts hors du pays.'],
-            ],
+            'secteurs' => config('secteurs'),
 
             'sanctions' => [
                 ['montant' => '50 M FCFA', 'texte' => 'Sanction administrative maximale (art. 455).'],

@@ -188,3 +188,10 @@ details p { margin-top: 8px; color: var(--mut); }
   .tableau th, .tableau td { display: block; width: auto; }
   .tableau th { border-bottom: 0; padding-bottom: 0; }
 }
+/* ===== Secteurs et services ===== */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.chips a { padding: 6px 12px; border-radius: 99px; background: #fff; text-decoration: none; font-size: 14px; font-weight: 600; }
+.chips a:hover { background: var(--ink); color: #fff; }
+.liste { padding-left: 18px; margin: 6px 0 0; }
+.liste li { margin-bottom: 6px; }
+section[id] { scroll-margin-top: 80px; }
