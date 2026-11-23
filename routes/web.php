@@ -6,13 +6,14 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Teams\TeamInvitationController;
 use App\Http\Middleware\EnsureTeamMembership;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Site\AccueilController;
 
 /*
 |--------------------------------------------------------------------------
 | Site public dpo.bj (Blade, section 4.1 du cahier des charges)
 |--------------------------------------------------------------------------
 */
-Route::view('/', 'site.accueil')->name('home');
+Route::get('/', AccueilController::class)->name('home');
 
 Route::name('site.')->group(function () {
     Route::view('/diagnostic', 'site.page', ['titre' => 'Diagnostic gratuit'])->name('diagnostic');

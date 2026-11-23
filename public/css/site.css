@@ -90,3 +90,57 @@ footer .bottom { border-top: 1px solid #22384f; margin-top: 24px; padding-top: 1
   nav.main { order: 3; width: 100%; flex: none; }
   .ddm { position: static; box-shadow: none; }
 }
+
+/* ===== Accueil ===== */
+.grid { display: grid; gap: 16px; }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.card.alerte { background: var(--orl); border-color: var(--or); }
+.tag { display: inline-block; font-size: 13px; font-weight: 600; padding: 2px 9px; border-radius: 99px; background: var(--skyl); }
+
+/* Aperçu de Sitael sous l'accroche */
+.hero { padding-bottom: 0; }
+.shot { margin-top: 28px; background: var(--card); border-radius: 16px 16px 0 0; border: 1px solid var(--line); border-bottom: 0; overflow: hidden; }
+.shot .bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--mut); }
+.shot .bar b { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 18px; }
+.kpi { border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.kpi b { display: block; font: 600 30px/1.1 Outfit, Inter, sans-serif; }
+.kpi span { font-size: 14px; color: var(--mut); }
+.kpi.alerte { border-color: var(--or); background: var(--orl); }
+
+/* Vidéo */
+.vgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 32px; align-items: center; }
+.vgrid video { width: 100%; border-radius: 14px; border: 1px solid var(--line); display: block; background: var(--ink); }
+.vlist { padding-left: 20px; margin: 0 0 18px; }
+.vlist li { margin-bottom: 6px; }
+
+/* Les 5 piliers */
+.piliers { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.piliers div { padding: 20px 16px; border-right: 1px solid var(--line); }
+.piliers div:last-child { border-right: 0; }
+.piliers b { display: block; font: 600 22px Outfit, Inter, sans-serif; margin-bottom: 4px; }
+
+/* Les 8 étapes */
+.etapes { counter-reset: etape; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column; column-gap: 32px; padding: 0; }
+.etapes li { list-style: none; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.etapes li::before { counter-increment: etape; content: counter(etape); width: 36px; height: 36px; border-radius: 50%; background: var(--sky); display: grid; place-items: center; font: 700 16px Outfit, Inter, sans-serif; }
+
+/* Sanctions et FAQ */
+.big { font: 600 clamp(36px, 5vw, 56px)/1 Outfit, Inter, sans-serif; letter-spacing: -0.02em; }
+.fond-ciel { background: var(--skyl); }
+.faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 32px; }
+details { border-bottom: 1px solid var(--line); padding: 12px 0; }
+summary { cursor: pointer; font-weight: 600; }
+details p { margin-top: 8px; color: var(--mut); }
+
+@media (max-width: 900px) {
+  .vgrid, .faq, .etapes { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; grid-template-rows: none; }
+  .piliers, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .piliers div { border-bottom: 1px solid var(--line); }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .piliers, .g4 { grid-template-columns: minmax(0, 1fr); }
+}
