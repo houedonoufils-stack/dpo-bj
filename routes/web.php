@@ -11,6 +11,7 @@ use App\Http\Controllers\Site\DiagnosticController;
 use App\Http\Controllers\Site\LogicielController;
 use App\Http\Controllers\Site\SolutionsController;
 use App\Http\Controllers\Site\LivreVController;
+use App\Http\Controllers\Site\FormulairesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::name('site.')->group(function () {
     Route::get('/solutions/secteurs', [SolutionsController::class, 'secteurs'])->name('secteurs');
     Route::get('/services', [SolutionsController::class, 'services'])->name('services');
     Route::get('/livre-v', LivreVController::class)->name('livre-v');
-    Route::view('/formulaires', 'site.page', ['titre' => 'Formulaires APDP'])->name('formulaires');
+    Route::get('/formulaires', FormulairesController::class)->name('formulaires');
     Route::view('/ressources', 'site.page', ['titre' => 'Ressources et blog'])->name('ressources');
     Route::view('/academie', 'site.page', ['titre' => 'Académie'])->name('academie');
     Route::view('/tarifs', 'site.page', ['titre' => 'Tarifs'])->name('tarifs');

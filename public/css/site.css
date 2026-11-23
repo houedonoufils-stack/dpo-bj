@@ -207,3 +207,12 @@ section[id] { scroll-margin-top: 80px; }
 @media (max-width: 600px) {
   .tableau.comp th, .tableau.comp td { display: table-cell; }
 }
+
+/* ===== Formulaires APDP ===== */
+.recherche { margin-top: 18px; max-width: 720px; }
+.recherche label { display: block; font-weight: 600; margin-bottom: 6px; }
+.recherche input {
+  flex: 1; min-width: 220px; min-height: 44px; padding: 10px 12px;
+  border: 1.5px solid var(--ink); border-radius: 10px; font: 16px Inter, system-ui, sans-serif; background: #fff;
+}
+.recherche input:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
