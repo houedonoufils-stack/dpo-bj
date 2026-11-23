@@ -177,3 +177,14 @@ details p { margin-top: 8px; color: var(--mut); }
   .diag { grid-template-columns: minmax(0, 1fr); }
   .sticky { position: static; }
 }
+
+/* ===== Pages Logiciel ===== */
+.card-phare { border: 2px solid var(--sky); }
+.t-n { background: #eef1f5; color: var(--mut); }
+.tableau { width: 100%; border-collapse: collapse; margin-top: 14px; background: var(--card); border-radius: 14px; overflow: hidden; }
+.tableau th, .tableau td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.tableau th { width: 200px; font-weight: 600; }
+@media (max-width: 600px) {
+  .tableau th, .tableau td { display: block; width: auto; }
+  .tableau th { border-bottom: 0; padding-bottom: 0; }
+}
