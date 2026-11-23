@@ -7,6 +7,7 @@ use App\Http\Controllers\Teams\TeamInvitationController;
 use App\Http\Middleware\EnsureTeamMembership;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\AccueilController;
+use App\Http\Controllers\Site\DiagnosticController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ use App\Http\Controllers\Site\AccueilController;
 Route::get('/', AccueilController::class)->name('home');
 
 Route::name('site.')->group(function () {
-    Route::view('/diagnostic', 'site.page', ['titre' => 'Diagnostic gratuit'])->name('diagnostic');
+    Route::get('/diagnostic', [DiagnosticController::class, 'show'])->name('diagnostic');
+    Route::post('/diagnostic', [DiagnosticController::class, 'evaluer'])->name('diagnostic.evaluer');
     Route::view('/logiciel', 'site.page', ['titre' => 'Sitael web'])->name('logiciel');
     Route::view('/logiciel/mobile', 'site.page', ['titre' => 'Sitael mobile'])->name('mobile');
     Route::view('/solutions/secteurs', 'site.page', ['titre' => 'Solutions par secteur'])->name('secteurs');
