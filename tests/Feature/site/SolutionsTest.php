@@ -21,5 +21,5 @@ test('la page des services présente le DPO externe et les AIPD', function () {
     $this->get('/services')
         ->assertOk()
         ->assertSee('DPO externe')
-        ->assertSee("Analyse d'impact (AIPD)", false);
+        ->assertSee("Analyse d'impact (AIPD)");
 });
