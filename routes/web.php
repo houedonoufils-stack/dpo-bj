@@ -15,6 +15,7 @@ use App\Http\Controllers\Site\FormulairesController;
 use App\Http\Controllers\Site\TarifsController;
 use App\Http\Controllers\Site\ApprendreController;
 use App\Http\Controllers\Site\ContactController;
+use App\Http\Controllers\Site\LegalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,8 @@ Route::name('site.')->group(function () {
     ->middleware('throttle:5,1')
     ->name('contact.envoyer');
     Route::view('/scanner', 'site.page', ['titre' => 'Scanner de site'])->name('scanner');
-    Route::view('/mentions-legales', 'site.page', ['titre' => 'Mentions légales'])->name('mentions');
-    Route::view('/confidentialite', 'site.page', ['titre' => 'Politique de confidentialité'])->name('confidentialite');
+    Route::get('/mentions-legales', [LegalController::class, 'mentions'])->name('mentions');
+    Route::get('/confidentialite', [LegalController::class, 'confidentialite'])->name('confidentialite');
 });
 
 Route::prefix('{current_team}')

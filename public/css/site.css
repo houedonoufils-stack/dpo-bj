@@ -246,3 +246,10 @@ section[id] { scroll-margin-top: 80px; }
 .mentions { margin-top: 18px; }
 /* Le champ piège : hors de l'écran (pas display:none, que certains robots détectent) */
 .piege { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ===== Pages légales ===== */
+.texte-legal { max-width: 860px; }
+.texte-legal h2 { font-size: 24px; margin-top: 32px; }
+.texte-legal .tableau { margin-bottom: 8px; }
+.a-completer { background: var(--orl); color: #b34d00; padding: 1px 8px; border-radius: 6px; font-weight: 600; font-size: 0.9em; }
+footer .a-completer { background: transparent; color: #ffb27a; padding: 0; }

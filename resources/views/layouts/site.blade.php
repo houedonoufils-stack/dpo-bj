@@ -84,8 +84,9 @@
                     <b>Informations légales</b><br>
                     <a href="{{ route('site.mentions') }}">Mentions légales</a><br>
                     <a href="{{ route('site.confidentialite') }}">Politique de confidentialité</a><br>
-                    RCCM et IFU : à compléter<br>
-                    Récépissé ou autorisation APDP de l'éditeur : à compléter
+                   RCCM : <x-a-completer :valeur="config('editeur.rccm')" /><br>
+                    IFU : <x-a-completer :valeur="config('editeur.ifu')" /><br>
+                    Récépissé APDP : <x-a-completer :valeur="config('editeur.recepisse_apdp')" />
                 </div>
                 <div class="small">
                     <b>Contact</b><br>
