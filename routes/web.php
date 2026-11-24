@@ -13,6 +13,7 @@ use App\Http\Controllers\Site\SolutionsController;
 use App\Http\Controllers\Site\LivreVController;
 use App\Http\Controllers\Site\FormulairesController;
 use App\Http\Controllers\Site\TarifsController;
+use App\Http\Controllers\Site\ApprendreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,8 @@ Route::name('site.')->group(function () {
     Route::get('/services', [SolutionsController::class, 'services'])->name('services');
     Route::get('/livre-v', LivreVController::class)->name('livre-v');
     Route::get('/formulaires', FormulairesController::class)->name('formulaires');
-    Route::view('/ressources', 'site.page', ['titre' => 'Ressources et blog'])->name('ressources');
-    Route::view('/academie', 'site.page', ['titre' => 'Académie'])->name('academie');
+    Route::get('/academie', [ApprendreController::class, 'academie'])->name('academie');
+    Route::get('/ressources', [ApprendreController::class, 'ressources'])->name('ressources');
     Route::get('/tarifs', TarifsController::class)->name('tarifs');
     Route::view('/contact', 'site.page', ['titre' => 'Contact'])->name('contact');
     Route::view('/scanner', 'site.page', ['titre' => 'Scanner de site'])->name('scanner');

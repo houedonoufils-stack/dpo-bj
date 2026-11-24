@@ -227,3 +227,6 @@ section[id] { scroll-margin-top: 80px; }
 .offre-phare { border: 2px solid var(--or); }
 .prix { font: 600 30px/1.1 Outfit, Inter, sans-serif; margin-top: 8px; }
 .prix small { font: 500 14px Inter, system-ui, sans-serif; color: var(--mut); }
+
+/* ===== Académie et ressources ===== */
+.modele { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-weight: 600; }
