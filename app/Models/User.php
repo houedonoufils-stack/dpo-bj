@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Concerns\HasTeams;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -12,12 +14,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Filament\Panel;
 
 /**
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string|null $role_plateforme
  * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $two_factor_secret
@@ -34,10 +36,13 @@ use Filament\Panel;
  */
 #[Fillable(['name', 'email', 'password', 'current_team_id'])]
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasTeams, Notifiable, TwoFactorAuthenticatable;
+
+    /** Rôles de l'équipe dpo.bj autorisés dans le back-office. */
+    public const ROLES_BACK_OFFICE = ['admin', 'formateur'];
 
     /**
      * Get the attributes that should be cast.
@@ -53,9 +58,6 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-        /** Rôles de l'équipe dpo.bj autorisés dans le back-office. */
-    public const ROLES_BACK_OFFICE = ['admin', 'formateur'];
-
     /** Seule l'équipe dpo.bj, avec un e-mail vérifié, entre dans le back-office (/admin). */
     public function canAccessPanel(Panel $panel): bool
     {
@@ -63,6 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
             && $this->hasVerifiedEmail();
     }
 
+    /** L'utilisateur est-il administrateur de dpo.bj ? */
     public function estAdmin(): bool
     {
         return $this->role_plateforme === 'admin';
