@@ -30,7 +30,8 @@ test('une recherche sans résultat affiche un message', function () {
 });
 
 test('la page rappelle que dpo.bj est sans lien avec l\'APDP', function () {
+    // Texte écrit directement dans la vue (sans {{ }}) : on cherche le HTML tel quel, d'où « false »
     $this->get('/formulaires')
         ->assertOk()
-        ->assertSee("dpo.bj est un service privé, sans lien avec l'APDP.");
+        ->assertSee("dpo.bj est un service privé, sans lien avec l'APDP.", false);
 });
