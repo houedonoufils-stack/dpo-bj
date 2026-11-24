@@ -12,6 +12,7 @@ use App\Http\Controllers\Site\LogicielController;
 use App\Http\Controllers\Site\SolutionsController;
 use App\Http\Controllers\Site\LivreVController;
 use App\Http\Controllers\Site\FormulairesController;
+use App\Http\Controllers\Site\TarifsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::name('site.')->group(function () {
     Route::get('/formulaires', FormulairesController::class)->name('formulaires');
     Route::view('/ressources', 'site.page', ['titre' => 'Ressources et blog'])->name('ressources');
     Route::view('/academie', 'site.page', ['titre' => 'Académie'])->name('academie');
-    Route::view('/tarifs', 'site.page', ['titre' => 'Tarifs'])->name('tarifs');
+    Route::get('/tarifs', TarifsController::class)->name('tarifs');
     Route::view('/contact', 'site.page', ['titre' => 'Contact'])->name('contact');
     Route::view('/scanner', 'site.page', ['titre' => 'Scanner de site'])->name('scanner');
     Route::view('/mentions-legales', 'site.page', ['titre' => 'Mentions légales'])->name('mentions');

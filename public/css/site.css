@@ -216,3 +216,14 @@ section[id] { scroll-margin-top: 80px; }
   border: 1.5px solid var(--ink); border-radius: 10px; font: 16px Inter, system-ui, sans-serif; background: #fff;
 }
 .recherche input:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
+
+/* ===== Tarifs ===== */
+.bascule { display: inline-flex; margin-top: 18px; border: 1.5px solid var(--ink); border-radius: 10px; overflow: hidden; background: #fff; }
+.bascule a { padding: 10px 16px; text-decoration: none; font-weight: 600; }
+.bascule a.on { background: var(--ink); color: #fff; }
+.offres { align-items: stretch; }
+.offre { display: flex; flex-direction: column; gap: 6px; }
+.offre .liste { flex: 1; }
+.offre-phare { border: 2px solid var(--or); }
+.prix { font: 600 30px/1.1 Outfit, Inter, sans-serif; margin-top: 8px; }
+.prix small { font: 500 14px Inter, system-ui, sans-serif; color: var(--mut); }
