@@ -41,11 +41,15 @@ test("la notification passe par la file d'attente", function () {
 });
 
 test("l'e-mail ne contient aucune donnée personnelle", function () {
-    $html = (string) (new NouvelleDemandeContact(12, 'Demander une démo', '24/11/2026 à 10:00'))
-        ->toMail(new AnonymousNotifiable)
-        ->render();
+    $mail = (new NouvelleDemandeContact(12, 'Demander une démo', '24/11/2026 à 10:00'))
+        ->toMail(new AnonymousNotifiable);
 
-    expect($html)->toContain('n° 12')
+    // L'objet de l'e-mail
+    expect($mail->subject)->toBe('Nouvelle demande de contact n° 12');
+
+    // Le corps de l'e-mail
+    expect((string) $mail->render())
+        ->toContain('Numéro : 12')
         ->toContain('Demander une démo')
         ->not->toContain('Awa Dossou')
         ->not->toContain('awa@exemple.bj');
