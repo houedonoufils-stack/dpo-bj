@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Concerns\HasTeams;
-use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -13,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Filament\Panel;
 
 /**
  * @property int $id
@@ -51,5 +51,20 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+        /** Rôles de l'équipe dpo.bj autorisés dans le back-office. */
+    public const ROLES_BACK_OFFICE = ['admin', 'formateur'];
+
+    /** Seule l'équipe dpo.bj, avec un e-mail vérifié, entre dans le back-office (/admin). */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return in_array($this->role_plateforme, self::ROLES_BACK_OFFICE, true)
+            && $this->hasVerifiedEmail();
+    }
+
+    public function estAdmin(): bool
+    {
+        return $this->role_plateforme === 'admin';
     }
 }
