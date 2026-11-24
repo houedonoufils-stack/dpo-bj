@@ -14,6 +14,7 @@ use App\Http\Controllers\Site\LivreVController;
 use App\Http\Controllers\Site\FormulairesController;
 use App\Http\Controllers\Site\TarifsController;
 use App\Http\Controllers\Site\ApprendreController;
+use App\Http\Controllers\Site\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,10 @@ Route::name('site.')->group(function () {
     Route::get('/academie', [ApprendreController::class, 'academie'])->name('academie');
     Route::get('/ressources', [ApprendreController::class, 'ressources'])->name('ressources');
     Route::get('/tarifs', TarifsController::class)->name('tarifs');
-    Route::view('/contact', 'site.page', ['titre' => 'Contact'])->name('contact');
+    Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+    Route::post('/contact', [ContactController::class, 'envoyer'])
+    ->middleware('throttle:5,1')
+    ->name('contact.envoyer');
     Route::view('/scanner', 'site.page', ['titre' => 'Scanner de site'])->name('scanner');
     Route::view('/mentions-legales', 'site.page', ['titre' => 'Mentions légales'])->name('mentions');
     Route::view('/confidentialite', 'site.page', ['titre' => 'Politique de confidentialité'])->name('confidentialite');

@@ -230,3 +230,19 @@ section[id] { scroll-margin-top: 80px; }
 
 /* ===== Académie et ressources ===== */
 .modele { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-weight: 600; }
+
+/* ===== Contact ===== */
+.formulaire label { display: block; font-weight: 600; font-size: 15px; margin: 14px 0 4px; }
+.formulaire input:not([type=checkbox]), .formulaire select, .formulaire textarea {
+  width: 100%; min-height: 44px; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 10px;
+  font: 16px Inter, system-ui, sans-serif; background: #fff; color: var(--ink);
+}
+.formulaire input:focus-visible, .formulaire select:focus-visible, .formulaire textarea:focus-visible { outline: 3px solid var(--or); outline-offset: 2px; }
+.formulaire .case { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 14px; margin-top: 16px; }
+.formulaire .case input { width: 20px; height: 20px; margin-top: 2px; flex: none; }
+.obligatoire { color: #d23b2a; }
+.champ-erreur { color: #b3261e; font-size: 14px; margin: 4px 0 0; }
+.succes { background: #e6f5ee; color: #1b8a5a; padding: 10px 14px; border-radius: 10px; font-weight: 600; }
+.mentions { margin-top: 18px; }
+/* Le champ piège : hors de l'écran (pas display:none, que certains robots détectent) */
+.piege { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }

@@ -9,3 +9,8 @@ Schedule::call(function () {
         ->where('expires_at', '<', now())
         ->delete();
 })->daily()->description('Delete expired team invitations');
+
+use App\Models\DemandeContact;
+
+// Supprime chaque nuit les demandes de contact de plus de 3 ans (art. 383)
+Schedule::command('model:prune', ['--model' => [DemandeContact::class]])->daily();
