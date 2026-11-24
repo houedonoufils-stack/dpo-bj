@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use App\Notifications\NouvelleDemandeContact;
+use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller
 {
@@ -55,7 +57,7 @@ class ContactController extends Controller
 
         $consentement = $request->boolean('consentement');
 
-        DemandeContact::create([
+        $demande = DemandeContact::create([
             'nom' => $valides['nom'],
             'organisation' => $valides['organisation'],
             'email' => $valides['email'],
@@ -66,6 +68,14 @@ class ContactController extends Controller
             'consentement_texte' => $consentement ? DemandeContact::TEXTE_CONSENTEMENT : null,
             'consentement_le' => $consentement ? now() : null,
         ]);
+
+            // Prévenir l'équipe dpo.bj (envoi en file d'attente, contenu neutre)
+        Notification::route('mail', config('dpo.emails.contact'))
+            ->notify(new NouvelleDemandeContact(
+                numero: $demande->id,
+                objet: DemandeContact::OBJETS[$demande->objet],
+                recueLe: $demande->created_at->format('d/m/Y à H:i'),
+            ));
 
         // Après un envoi réussi, on redirige : un rafraîchissement de la page ne renverra pas le formulaire
         return redirect()->route('site.contact')->with('succes', $merci);
