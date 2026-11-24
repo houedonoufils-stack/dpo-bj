@@ -125,4 +125,9 @@
         });
     </script>
 </body>
+    @if (config('recette.active'))
+        <div class="notice" style="background:#d23b2a">
+            Site de test : les données sont fictives. N'y saisissez aucune vraie donnée personnelle.
+        </div>
+    @endif
 </html>
