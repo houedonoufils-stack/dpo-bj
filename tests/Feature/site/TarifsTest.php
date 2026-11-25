@@ -1,27 +1,22 @@
 <?php
 
-test('les tarifs mensuels sont affichés en FCFA', function () {
+test('les tarifs sont affichés par an, avec 2 mois offerts', function () {
+    // 20 000 × 10 = 200 000 ; 60 000 × 10 = 600 000 ; 150 000 × 10 = 1 500 000
     $this->get('/tarifs')
         ->assertOk()
-        ->assertSee('20 000')
-        ->assertSee('60 000')
-        ->assertSee('150 000')
-        ->assertSee('Sur devis')
-        ->assertSee('par mois');
-});
-
-test("le tarif annuel applique les mois offerts", function () {
-    // 20 000 FCFA × (12 − 2) mois = 200 000 FCFA par an
-    $this->get('/tarifs?facturation=annuelle')
-        ->assertOk()
         ->assertSee('200 000')
-        ->assertSee('par an');
+        ->assertSee('600 000')
+        ->assertSee('1 500 000')
+        ->assertSee('Sur devis')
+        ->assertSee('par an')
+        ->assertSee('Annuel · 2 mois offerts');
 });
 
-test('une valeur inconnue revient au tarif mensuel', function () {
-    $this->get('/tarifs?facturation=nimportequoi')
+test("il n'y a plus de tarif mensuel", function () {
+    $this->get('/tarifs')
         ->assertOk()
-        ->assertSee('par mois');
+        ->assertDontSee('par mois')
+        ->assertDontSee('Mensuel');
 });
 
 test("la page mentionne la TVA et l'essai gratuit", function () {

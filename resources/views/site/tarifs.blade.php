@@ -13,12 +13,7 @@
             </p>
 
             {{-- Choix mensuel / annuel : deux liens, sans JavaScript --}}
-            <div class="bascule" role="group" aria-label="Période de facturation">
-                <a href="{{ route('site.tarifs') }}" @class(['on' => ! $annuel]) @if (! $annuel) aria-current="true" @endif>Mensuel</a>
-                <a href="{{ route('site.tarifs', ['facturation' => 'annuelle']) }}" @class(['on' => $annuel]) @if ($annuel) aria-current="true" @endif>
-                    Annuel · {{ $moisOfferts }} mois offerts
-                </a>
-            </div>
+            <p style="margin-top:18px"><span class="tag t-warn">Annuel · {{ $moisOfferts }} mois offerts</span></p>
         </div>
     </section>
 
@@ -40,7 +35,7 @@
                             {{ number_format($offre['prix'], 0, ',', ' ') }} <small>FCFA HT</small>
                         </div>
                         <p class="small mut">
-                            {{ $annuel ? 'par an' : 'par mois' }} {{ $offre['complement'] }}
+                            par an {{ $offre['complement'] }}
                             · {{ number_format($offre['prix'] * (1 + $tva), 0, ',', ' ') }} FCFA TTC
                         </p>
                     @endif

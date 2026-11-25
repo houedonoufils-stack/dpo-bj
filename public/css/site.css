@@ -253,3 +253,9 @@ section[id] { scroll-margin-top: 80px; }
 .texte-legal .tableau { margin-bottom: 8px; }
 .a-completer { background: var(--orl); color: #b34d00; padding: 1px 8px; border-radius: 6px; font-weight: 600; font-size: 0.9em; }
 footer .a-completer { background: transparent; color: #ffb27a; padding: 0; }
+
+/* ===== Logo et boutons désactivés (changements du porteur du projet) ===== */
+.logo img { display: block; height: 60px; width: auto; }
+.logo-pied { display: inline-block; background: #fff; border-radius: 10px; padding: 6px 10px; }
+.logo-pied img { display: block; height: 72px; width: auto; }
+.btn.desactive { opacity: .55; cursor: not-allowed; pointer-events: none; }

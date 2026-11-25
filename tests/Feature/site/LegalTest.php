@@ -33,3 +33,11 @@ test('la durée de conservation affichée correspond à celle du code', function
         ->assertOk()
         ->assertSee(App\Models\DemandeContact::CONSERVATION_ANNEES.' ans après la réception');
 });
+
+
+test("le pied de page affiche l'éditeur HOUEDONOU & FILS", function () {
+    $this->get('/')
+        ->assertOk()
+        ->assertSee('HOUEDONOU &amp; FILS', false)
+        ->assertSee('RB/PNO/24 B 5316');
+});

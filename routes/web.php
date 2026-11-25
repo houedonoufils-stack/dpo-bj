@@ -27,8 +27,10 @@ Route::get('/', AccueilController::class)->name('home');
 Route::name('site.')->group(function () {
     Route::get('/diagnostic', [DiagnosticController::class, 'show'])->name('diagnostic');
     Route::post('/diagnostic', [DiagnosticController::class, 'evaluer'])->name('diagnostic.evaluer');
-    Route::get('/logiciel', [LogicielController::class, 'web'])->name('logiciel');
-    Route::get('/logiciel/mobile', [LogicielController::class, 'mobile'])->name('mobile');
+    Route::get('/outil', [LogicielController::class, 'outil'])->name('outil');
+    Route::permanentRedirect('/logiciel', '/outil');
+    Route::permanentRedirect('/logiciel/mobile', '/outil');
+    Route::view('/quiz', 'site.quiz')->name('quiz');
     Route::get('/solutions/secteurs', [SolutionsController::class, 'secteurs'])->name('secteurs');
     Route::get('/services', [SolutionsController::class, 'services'])->name('services');
     Route::get('/livre-v', LivreVController::class)->name('livre-v');

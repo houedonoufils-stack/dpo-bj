@@ -91,8 +91,8 @@
                 <h3>Nous joindre</h3>
                 <p>
                     <b>E-mail</b><br><a href="mailto:contact@dpo.bj">contact@dpo.bj</a><br><br>
-                    <b>Téléphone et WhatsApp</b><br>numéro à confirmer<br><br>
-                    <b>Adresse</b><br>Cotonou, adresse à confirmer
+                    <b>Téléphone et WhatsApp</b><br><x-a-completer :valeur="config('editeur.telephone')" /><br><br>
+                    <b>Adresse</b><br><x-a-completer :valeur="config('editeur.siege')" />
                 </p>
                 <p class="small mut">
                     Une violation de données en cours ? Précisez-le dans l'objet « Autre » : votre demande sera traitée en priorité.
