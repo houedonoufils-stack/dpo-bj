@@ -31,17 +31,11 @@
 
             {{-- Tout ce qui se range derrière le bouton ☰ --}}
             <div class="menu-panneau" id="menu-principal">
-                <nav class="main" aria-label="Menu principal">
+                                <nav class="main" aria-label="Menu principal">
                     <a href="{{ route('home') }}" @class(['on' => request()->routeIs('home')])>Accueil</a>
                     <a href="{{ route('site.outil') }}" @class(['on' => request()->routeIs('site.outil')])>Outil</a>
-
-                    <div class="dd">
-                        <button type="button" aria-expanded="false" @class(['ddb', 'on' => request()->routeIs('site.secteurs', 'site.services')])>Solutions</button>
-                        <div class="ddm">
-                            <a href="{{ route('site.secteurs') }}" @class(['on' => request()->routeIs('site.secteurs')])>Solutions par secteur</a>
-                            <a href="{{ route('site.services') }}" @class(['on' => request()->routeIs('site.services')])>Services d'accompagnement</a>
-                        </div>
-                    </div>
+                    <a href="{{ route('site.tarifs') }}" @class(['on' => request()->routeIs('site.tarifs')])>Tarifs</a>
+                    <a href="{{ route('site.services') }}" @class(['on' => request()->routeIs('site.services')])>Services</a>
 
                     <div class="dd">
                         <button type="button" aria-expanded="false" @class(['ddb', 'on' => request()->routeIs('site.livre-v', 'site.formulaires', 'site.ressources', 'site.academie')])>Formation</button>
@@ -54,7 +48,6 @@
                     </div>
 
                     <a href="{{ route('site.quiz') }}" @class(['on' => request()->routeIs('site.quiz')])>Quiz</a>
-                    <a href="{{ route('site.tarifs') }}" @class(['on' => request()->routeIs('site.tarifs')])>Tarifs</a>
                     <a href="{{ route('site.contact') }}" @class(['on' => request()->routeIs('site.contact')])>Contact</a>
                 </nav>
 
