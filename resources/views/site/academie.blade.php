@@ -8,8 +8,8 @@
         <div class="wrap">
             <h1>Académie dpo.bj</h1>
             <p class="lead">
-                Six formations pratiques au Livre V, avec des travaux pratiques sur Sitael
-                à partir d'une organisation fictive.
+                Six formations au droit du numérique, au métier de DPO et à la cybersécurité,
+                avec des travaux pratiques sur Sitael à partir d'une organisation fictive.
             </p>
             <a class="btn pri" href="{{ route('site.contact') }}">Être prévenu des prochaines sessions</a>
         </div>
@@ -21,7 +21,10 @@
             <div class="grid g3" style="margin-top:14px">
                 @foreach ($formations as $formation)
                     <article class="card offre">
-                        <span class="tag">{{ $formation['duree'] }}</span>
+                        <div class="row">
+                            <span class="tag t-n">{{ $formation['code'] }}</span>
+                            <span class="tag">{{ $formation['duree'] }}</span>
+                        </div>
                         <h3 style="margin-top:8px">{{ $formation['titre'] }}</h3>
                         <p class="mut small">{{ $formation['texte'] }}</p>
                         <p class="small liste"><b>Pour qui :</b> {{ $formation['public'] }}</p>
@@ -29,7 +32,7 @@
                 @endforeach
             </div>
             <p class="small mut" style="margin-top:12px">
-                Intitulés provisoires : le programme détaillé de chaque formation sera publié à l'ouverture des inscriptions.
+                Formations en ligne, avec des travaux pratiques sur Sitael. Le programme détaillé est remis à l'inscription.
             </p>
         </div>
     </section>
@@ -40,17 +43,18 @@
                 <h3>Calendrier des sessions</h3>
                 <p class="mut">Aucune session n'est encore programmée.</p>
                 <p class="small">
-                    Les dates, les lieux (Cotonou ou en ligne), les tarifs et l'inscription avec paiement
+                    Les dates, les liens de visio, les tarifs et l'inscription avec paiement
                     par Mobile Money seront publiés ici.
                 </p>
                 <a class="btn" href="{{ route('site.contact') }}">Me prévenir</a>
             </div>
             <div class="card">
-                <h3>Former vos équipes sur place</h3>
+                <h3>Après la formation : le quiz</h3>
                 <p class="mut small">
-                    Une formation dans vos locaux, adaptée à votre secteur et à vos traitements.
+                    Un quiz en ligne valide vos acquis. Réussi, il vous donne droit à une attestation
+                    de formation, vérifiable par tous.
                 </p>
-                <a class="btn" href="{{ route('site.contact') }}">Demander un devis</a>
+                <a class="btn" href="{{ route('site.quiz') }}">Découvrir le quiz</a>
             </div>
         </div>
     </section>
