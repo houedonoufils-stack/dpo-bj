@@ -12,23 +12,29 @@ class FormationInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('slug'),
-                TextEntry::make('titre'),
+                TextEntry::make('titre')
+                    ->label('Titre'),
+
+                TextEntry::make('slug')
+                    ->label('Code')
+                    ->formatStateUsing(fn (string $state): string => strtoupper($state)),
+
                 TextEntry::make('public')
-                    ->placeholder('-'),
+                    ->label('Public visé')
+                    ->placeholder('Non renseigné'),
+
                 TextEntry::make('duree')
-                    ->placeholder('-'),
+                    ->label('Durée')
+                    ->placeholder('Non renseignée'),
+
                 TextEntry::make('description')
-                    ->placeholder('-')
+                    ->label('Description')
+                    ->placeholder('Non renseignée')
                     ->columnSpanFull(),
+
                 IconEntry::make('active')
+                    ->label('Proposée sur le site')
                     ->boolean(),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
             ]);
     }
 }

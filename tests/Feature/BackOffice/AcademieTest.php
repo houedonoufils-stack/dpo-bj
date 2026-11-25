@@ -120,3 +120,12 @@ test('une session annulée libère le créneau', function () {
         ->call('create')
         ->assertHasNoFormErrors();
 });
+
+test('un admin voit la liste des formations', function () {
+    creerSession();
+
+    $this->actingAs(creerAdmin())
+        ->get('/admin/formations')
+        ->assertOk()
+        ->assertSee('Formation DPO de test');
+});
