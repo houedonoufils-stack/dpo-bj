@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Une session d'une formation : une date, un formateur, un lien de visio.
@@ -55,6 +56,20 @@ class FormationSession extends Model
     public function inscriptions(): HasMany
     {
         return $this->hasMany(Inscription::class);
+    }
+
+
+        /**
+     * Sessions non annulées qui chevauchent le créneau donné.
+     * Deux créneaux se chevauchent si l'un commence avant la fin de l'autre.
+     */
+    public static function surLeCreneau(string $debut, string $fin, ?int $sauf = null): Builder
+    {
+        return static::query()
+            ->where('statut', '!=', 'annulee')
+            ->where('debut', '<', $fin)
+            ->where('fin', '>', $debut)
+            ->when($sauf, fn (Builder $query) => $query->whereKeyNot($sauf));
     }
     
 }

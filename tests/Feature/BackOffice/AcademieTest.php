@@ -64,3 +64,59 @@ test('une même adresse ne peut pas être inscrite deux fois à la même session
     expect(fn () => $session->inscriptions()->create(['nom' => 'Apprenant Bis', 'email' => 'apprenant@exemple.bj']))
         ->toThrow(QueryException::class);
 });
+
+test('on ne peut pas créer deux fois la même formation sur le même créneau', function () {
+    $session = creerSession();
+
+    $this->actingAs(creerAdmin());
+
+    Livewire\Livewire::test(App\Filament\Resources\FormationSessions\Pages\CreateFormationSession::class)
+        ->fillForm([
+            'formation_id' => $session->formation_id,
+            'debut' => $session->debut->format('Y-m-d H:i:s'),
+            'fin' => $session->fin->format('Y-m-d H:i:s'),
+            'statut' => 'planifiee',
+        ])
+        ->call('create')
+        ->assertHasFormErrors(['formation_id']);
+});
+
+test('un formateur ne peut pas avoir deux sessions qui se chevauchent', function () {
+    $formateur = User::factory()->create();
+    $formateur->forceFill(['role_plateforme' => 'formateur'])->save();
+
+    $session = creerSession();
+    $session->update(['formateur_id' => $formateur->id]);
+
+    $autre = Formation::create(['slug' => 'adb-autre', 'titre' => 'Autre formation', 'active' => true]);
+
+    $this->actingAs(creerAdmin());
+
+    Livewire\Livewire::test(App\Filament\Resources\FormationSessions\Pages\CreateFormationSession::class)
+        ->fillForm([
+            'formation_id' => $autre->id,
+            'formateur_id' => $formateur->id,
+            'debut' => $session->debut->copy()->addHour()->format('Y-m-d H:i:s'),
+            'fin' => $session->fin->copy()->addDay()->format('Y-m-d H:i:s'),
+            'statut' => 'planifiee',
+        ])
+        ->call('create')
+        ->assertHasFormErrors(['formateur_id']);
+});
+
+test('une session annulée libère le créneau', function () {
+    $session = creerSession();
+    $session->update(['statut' => 'annulee']);
+
+    $this->actingAs(creerAdmin());
+
+    Livewire\Livewire::test(App\Filament\Resources\FormationSessions\Pages\CreateFormationSession::class)
+        ->fillForm([
+            'formation_id' => $session->formation_id,
+            'debut' => $session->debut->format('Y-m-d H:i:s'),
+            'fin' => $session->fin->format('Y-m-d H:i:s'),
+            'statut' => 'planifiee',
+        ])
+        ->call('create')
+        ->assertHasNoFormErrors();
+});
