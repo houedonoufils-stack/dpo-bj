@@ -28,7 +28,7 @@ return [
     ],
 
     // Formalités de dpo.bj auprès de l'APDP pour ses propres traitements
-    'recepisse_apdp' => env('EDITEUR_RECEPISSE_APDP'),
+    'recepisse_apdp' => env('EDITEUR_RECEPISSE_APDP', 'N°2025-002/APDP/PT/AP/CFRI/SA'),
 
     'politique_mise_a_jour' => '25/11/2026',
 
