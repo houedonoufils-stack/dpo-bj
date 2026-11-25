@@ -6,7 +6,7 @@
     <title>@yield('title', 'Conformité au Livre V') · dpo.bj</title>
     <meta name="description" content="@yield('description', 'Déclarez, faites autoriser et prouvez votre conformité au Livre V du Code du numérique du Bénin.')">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v={{ filemtime(public_path('css/site.css')) }}">
 </head>
 <body>
 
