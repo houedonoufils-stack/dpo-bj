@@ -129,3 +129,14 @@ test('un admin voit la liste des formations', function () {
         ->assertOk()
         ->assertSee('Formation DPO de test');
 });
+
+test('le tableau de bord affiche les compteurs et les prochaines sessions', function () {
+    creerSession();
+
+    $this->actingAs(creerAdmin())
+        ->get('/admin')
+        ->assertOk()
+        ->assertSee('Sessions à venir')
+        ->assertSee('Prochaines sessions')
+        ->assertSee('Formation DPO de test');
+});
