@@ -24,35 +24,45 @@
                 <img src="{{ asset('images/logo-dpo.png') }}" alt="dpo.bj – Data Protection Officer" width="64" height="76">
             </a>
 
-            <nav class="main" aria-label="Menu principal">
-                <a href="{{ route('home') }}" @class(['on' => request()->routeIs('home')])>Accueil</a>
-                <a href="{{ route('site.outil') }}" @class(['on' => request()->routeIs('site.outil')])>Outil</a>
+            {{-- Bouton ☰ : visible seulement sur téléphone et tablette --}}
+            <button type="button" class="burger" aria-expanded="false" aria-controls="menu-principal" aria-label="Ouvrir le menu">
+                <span></span><span></span><span></span>
+            </button>
 
-                <div class="dd">
-                    <button type="button" aria-expanded="false" @class(['ddb', 'on' => request()->routeIs('site.secteurs', 'site.services')])>Solutions</button>
-                    <div class="ddm">
-                        <a href="{{ route('site.secteurs') }}" @class(['on' => request()->routeIs('site.secteurs')])>Solutions par secteur</a>
-                        <a href="{{ route('site.services') }}" @class(['on' => request()->routeIs('site.services')])>Services d'accompagnement</a>
+            {{-- Tout ce qui se range derrière le bouton ☰ --}}
+            <div class="menu-panneau" id="menu-principal">
+                <nav class="main" aria-label="Menu principal">
+                    <a href="{{ route('home') }}" @class(['on' => request()->routeIs('home')])>Accueil</a>
+                    <a href="{{ route('site.outil') }}" @class(['on' => request()->routeIs('site.outil')])>Outil</a>
+
+                    <div class="dd">
+                        <button type="button" aria-expanded="false" @class(['ddb', 'on' => request()->routeIs('site.secteurs', 'site.services')])>Solutions</button>
+                        <div class="ddm">
+                            <a href="{{ route('site.secteurs') }}" @class(['on' => request()->routeIs('site.secteurs')])>Solutions par secteur</a>
+                            <a href="{{ route('site.services') }}" @class(['on' => request()->routeIs('site.services')])>Services d'accompagnement</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="dd">
-                    <button type="button" aria-expanded="false" @class(['ddb', 'on' => request()->routeIs('site.livre-v', 'site.formulaires', 'site.ressources', 'site.academie')])>Formation</button>
-                    <div class="ddm">
-                        <a href="{{ route('site.livre-v') }}" @class(['on' => request()->routeIs('site.livre-v')])>Comprendre le Livre V</a>
-                        <a href="{{ route('site.formulaires') }}" @class(['on' => request()->routeIs('site.formulaires')])>Formulaires APDP</a>
-                        <a href="{{ route('site.ressources') }}" @class(['on' => request()->routeIs('site.ressources')])>Ressources et blog</a>
-                        <a href="{{ route('site.academie') }}" @class(['on' => request()->routeIs('site.academie')])>Académie</a>
+                    <div class="dd">
+                        <button type="button" aria-expanded="false" @class(['ddb', 'on' => request()->routeIs('site.livre-v', 'site.formulaires', 'site.ressources', 'site.academie')])>Formation</button>
+                        <div class="ddm">
+                            <a href="{{ route('site.livre-v') }}" @class(['on' => request()->routeIs('site.livre-v')])>Comprendre le Livre V</a>
+                            <a href="{{ route('site.formulaires') }}" @class(['on' => request()->routeIs('site.formulaires')])>Formulaires APDP</a>
+                            <a href="{{ route('site.ressources') }}" @class(['on' => request()->routeIs('site.ressources')])>Ressources et blog</a>
+                            <a href="{{ route('site.academie') }}" @class(['on' => request()->routeIs('site.academie')])>Académie</a>
+                        </div>
                     </div>
+
+                    <a href="{{ route('site.quiz') }}" @class(['on' => request()->routeIs('site.quiz')])>Quiz</a>
+                    <a href="{{ route('site.tarifs') }}" @class(['on' => request()->routeIs('site.tarifs')])>Tarifs</a>
+                    <a href="{{ route('site.contact') }}" @class(['on' => request()->routeIs('site.contact')])>Contact</a>
+                </nav>
+
+                <div class="actions">
+                    <a class="btn hot" href="{{ route('site.diagnostic') }}">Diagnostic gratuit</a>
+                    <a class="btn pri" href="{{ route('login') }}">Se connecter à Sitael</a>
                 </div>
-
-                <a href="{{ route('site.quiz') }}" @class(['on' => request()->routeIs('site.quiz')])>Quiz</a>
-                <a href="{{ route('site.tarifs') }}" @class(['on' => request()->routeIs('site.tarifs')])>Tarifs</a>
-                <a href="{{ route('site.contact') }}" @class(['on' => request()->routeIs('site.contact')])>Contact</a>
-            </nav>
-
-            <a class="btn hot" href="{{ route('site.diagnostic') }}">Diagnostic gratuit</a>
-            <a class="btn pri" href="{{ route('login') }}">Se connecter à Sitael</a>
+            </div>
         </div>
     </header>
 
@@ -107,28 +117,60 @@
     </footer>
 
     {{-- Ouverture des sous-menus au toucher (téléphone) --}}
+        {{-- Menu ☰ et sous-menus --}}
     <script>
-        document.querySelectorAll('.dd .ddb').forEach(function (bouton) {
-            bouton.addEventListener('click', function () {
-                var menu = bouton.parentElement;
-                var ouvert = menu.classList.toggle('open');
-                bouton.setAttribute('aria-expanded', ouvert);
-                document.querySelectorAll('.dd.open').forEach(function (autre) {
-                    if (autre !== menu) {
-                        autre.classList.remove('open');
-                        autre.querySelector('.ddb').setAttribute('aria-expanded', 'false');
+        (function () {
+            var entete = document.querySelector('.top');
+            var burger = document.querySelector('.burger');
+
+            function fermerSousMenus(sauf) {
+                document.querySelectorAll('.dd.open').forEach(function (menu) {
+                    if (menu !== sauf) {
+                        menu.classList.remove('open');
+                        menu.querySelector('.ddb').setAttribute('aria-expanded', 'false');
                     }
                 });
-            });
-        });
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('.dd')) {
-                document.querySelectorAll('.dd.open').forEach(function (menu) {
-                    menu.classList.remove('open');
-                    menu.querySelector('.ddb').setAttribute('aria-expanded', 'false');
-                });
             }
-        });
+
+            function fermerMenu() {
+                entete.classList.remove('ouvert');
+                burger.setAttribute('aria-expanded', 'false');
+                burger.setAttribute('aria-label', 'Ouvrir le menu');
+                fermerSousMenus(null);
+            }
+
+            // Bouton ☰ : ouvre ou ferme le menu
+            burger.addEventListener('click', function () {
+                var ouvert = entete.classList.toggle('ouvert');
+                burger.setAttribute('aria-expanded', ouvert);
+                burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
+            });
+
+            // Sous-menus « Solutions » et « Formation »
+            document.querySelectorAll('.dd .ddb').forEach(function (bouton) {
+                bouton.addEventListener('click', function () {
+                    var menu = bouton.parentElement;
+                    var ouvert = menu.classList.toggle('open');
+                    bouton.setAttribute('aria-expanded', ouvert);
+                    fermerSousMenus(menu);
+                });
+            });
+
+            // Un clic en dehors de l'en-tête ferme tout
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.top')) {
+                    fermerMenu();
+                }
+            });
+
+            // La touche Échap ferme tout et remet le curseur sur le bouton ☰
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && entete.classList.contains('ouvert')) {
+                    fermerMenu();
+                    burger.focus();
+                }
+            });
+        })();
     </script>
 </body>
 
