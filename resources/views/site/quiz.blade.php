@@ -7,7 +7,7 @@
 
     <section class="band hero" style="padding-bottom:clamp(28px,4vw,64px)">
         <div class="wrap">
-            <h1>Le quiz de l'Académie dpo.bj</h1>
+            <h1>Le quiz de la formation dpo.bj</h1>
             <p class="lead">
                 Après chaque formation, un quiz en ligne valide vos acquis. Réussi, il vous donne droit
                 à une attestation de formation, vérifiable par tous.
