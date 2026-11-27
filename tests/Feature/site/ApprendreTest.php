@@ -27,7 +27,7 @@ test('les ressources présentent les modèles à venir', function () {
 });
 
 test('chaque formation présente ses objectifs et sa pratique sur Sitael', function () {
-    $this->get('/formation')
+    $this->get('/academie')
         ->assertOk()
         ->assertSee('Apprendre en pratiquant')
         ->assertSee('Pratique sur Sitael')
@@ -36,7 +36,7 @@ test('chaque formation présente ses objectifs et sa pratique sur Sitael', funct
 });
 
 test('la page présente les parcours et la validation par quiz à 70 %', function () {
-    $this->get('/formation')
+    $this->get('/academie')
         ->assertOk()
         ->assertSee('Les parcours')
         ->assertSee('Certificat DPO')
