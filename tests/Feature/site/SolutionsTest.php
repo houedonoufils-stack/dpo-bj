@@ -11,8 +11,8 @@ test('la page des secteurs présente les 8 secteurs avec leurs ancres', function
     }
 });
 
-test("les vignettes de l'accueil mènent au bon secteur", function () {
-    $this->get('/')
+test("les vignettes de la page Outil mènent au bon secteur", function () {
+    $this->get('/outil')
         ->assertOk()
         ->assertSee('/solutions/secteurs#sante', false);
 });
