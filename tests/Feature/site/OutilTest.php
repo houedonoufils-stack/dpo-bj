@@ -18,7 +18,7 @@ test('le menu affiche Outil, Formation et Quiz', function () {
     $this->get('/')
         ->assertOk()
         ->assertSee('Outil</a>', false)
-        ->assertSee('Formation</button>', false)
+                ->assertSee('Formation</a>', false)
         ->assertSee('Quiz</a>', false)
         ->assertDontSee('Apprendre</button>', false)
         ->assertDontSee('Logiciel</button>', false);

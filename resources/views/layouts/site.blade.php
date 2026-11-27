@@ -10,8 +10,6 @@
 </head>
 <body>
 
-   
-
     {{-- Bandeau obligatoire (section 4.5 du cahier des charges) --}}
     <div class="notice">
         dpo.bj est un service privé, sans lien avec l'Autorité de protection des données personnelles (APDP).
@@ -31,22 +29,12 @@
 
             {{-- Tout ce qui se range derrière le bouton ☰ --}}
             <div class="menu-panneau" id="menu-principal">
-                                <nav class="main" aria-label="Menu principal">
+                <nav class="main" aria-label="Menu principal">
                     <a href="{{ route('home') }}" @class(['on' => request()->routeIs('home')])>Accueil</a>
                     <a href="{{ route('site.outil') }}" @class(['on' => request()->routeIs('site.outil')])>Outil</a>
                     <a href="{{ route('site.tarifs') }}" @class(['on' => request()->routeIs('site.tarifs')])>Tarifs</a>
                     <a href="{{ route('site.services') }}" @class(['on' => request()->routeIs('site.services')])>Services</a>
-
-                    <div class="dd">
-                        <button type="button" aria-expanded="false" @class(['ddb', 'on' => request()->routeIs('site.livre-v', 'site.formulaires', 'site.ressources', 'site.academie')])>Formation</button>
-                        <div class="ddm">
-                            <a href="{{ route('site.livre-v') }}" @class(['on' => request()->routeIs('site.livre-v')])>Comprendre le Livre V</a>
-                            <a href="{{ route('site.formulaires') }}" @class(['on' => request()->routeIs('site.formulaires')])>Formulaires APDP</a>
-                            <a href="{{ route('site.ressources') }}" @class(['on' => request()->routeIs('site.ressources')])>Ressources et blog</a>
-                            <a href="{{ route('site.academie') }}" @class(['on' => request()->routeIs('site.academie')])>Académie</a>
-                        </div>
-                    </div>
-
+                    <a href="{{ route('site.academie') }}" @class(['on' => request()->routeIs('site.academie')])>Formation</a>
                     <a href="{{ route('site.quiz') }}" @class(['on' => request()->routeIs('site.quiz')])>Quiz</a>
                     <a href="{{ route('site.contact') }}" @class(['on' => request()->routeIs('site.contact')])>Contact</a>
                 </nav>
@@ -79,11 +67,17 @@
                 <div class="small">
                     <b>Le site</b><br>
                     <a href="{{ route('site.outil') }}">Sitael, l'outil</a><br>
+                    <a href="{{ route('site.academie') }}">Formation</a><br>
                     <a href="{{ route('site.diagnostic') }}">Diagnostic gratuit</a><br>
                     <a href="{{ route('site.quiz') }}">Quiz</a><br>
-                    <a href="{{ route('site.formulaires') }}">Formulaires APDP</a><br>
                     <a href="{{ route('site.scanner') }}">Scanner de site</a><br>
                     <a href="{{ route('site.tarifs') }}">Tarifs</a>
+                </div>
+                <div class="small">
+                    <b>Ressources</b><br>
+                    <a href="{{ route('site.livre-v') }}">Comprendre le Livre V</a><br>
+                    <a href="{{ route('site.formulaires') }}">Formulaires APDP</a><br>
+                    <a href="{{ route('site.ressources') }}">Ressources et blog</a>
                 </div>
                 <div class="small">
                     <b>Éditeur</b><br>
@@ -99,8 +93,7 @@
                     <b>Contact</b><br>
                     <a href="mailto:contact@dpo.bj">contact@dpo.bj</a><br>
                     Téléphone et WhatsApp : <x-a-completer :valeur="config('editeur.telephone')" /><br>
-                    DPO de l'éditeur : <a href="mailto:dpo@dpo.bj">dpo@dpo.bj</a><br>
-                    État du service : <a href="mailto:houedonou.fils@gmail.com"></a>houedonou.fils@gmail.com</a>
+                    DPO de l'éditeur : <a href="mailto:dpo@dpo.bj">dpo@dpo.bj</a>
                 </div>
             </div>
             <p class="small bottom">
@@ -109,27 +102,23 @@
         </div>
     </footer>
 
-    {{-- Ouverture des sous-menus au toucher (téléphone) --}}
-        {{-- Menu ☰ et sous-menus --}}
+    {{-- Site de test uniquement (mode recette) : tout en bas, après le pied de page --}}
+    @if (config('recette.active'))
+        <div class="notice" style="background:#d23b2a">
+            Site de test : les données sont fictives. N'y saisissez aucune vraie donnée personnelle.
+        </div>
+    @endif
+
+    {{-- Menu ☰ (téléphone et tablette) --}}
     <script>
         (function () {
             var entete = document.querySelector('.top');
             var burger = document.querySelector('.burger');
 
-            function fermerSousMenus(sauf) {
-                document.querySelectorAll('.dd.open').forEach(function (menu) {
-                    if (menu !== sauf) {
-                        menu.classList.remove('open');
-                        menu.querySelector('.ddb').setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
             function fermerMenu() {
                 entete.classList.remove('ouvert');
                 burger.setAttribute('aria-expanded', 'false');
                 burger.setAttribute('aria-label', 'Ouvrir le menu');
-                fermerSousMenus(null);
             }
 
             // Bouton ☰ : ouvre ou ferme le menu
@@ -139,24 +128,14 @@
                 burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
             });
 
-            // Sous-menus « Solutions » et « Formation »
-            document.querySelectorAll('.dd .ddb').forEach(function (bouton) {
-                bouton.addEventListener('click', function () {
-                    var menu = bouton.parentElement;
-                    var ouvert = menu.classList.toggle('open');
-                    bouton.setAttribute('aria-expanded', ouvert);
-                    fermerSousMenus(menu);
-                });
-            });
-
-            // Un clic en dehors de l'en-tête ferme tout
+            // Un clic en dehors de l'en-tête ferme le menu
             document.addEventListener('click', function (e) {
                 if (!e.target.closest('.top')) {
                     fermerMenu();
                 }
             });
 
-            // La touche Échap ferme tout et remet le curseur sur le bouton ☰
+            // La touche Échap ferme le menu et remet le curseur sur le bouton ☰
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && entete.classList.contains('ouvert')) {
                     fermerMenu();
@@ -166,11 +145,4 @@
         })();
     </script>
 </body>
-
- {{-- Site de test uniquement (mode recette) --}}
-    @if (config('recette.active'))
-        <div class="notice" style="background:#d23b2a">
-            Site de test : les données sont fictives. N'y saisissez aucune vraie donnée personnelle.
-        </div>
-    @endif
 </html>

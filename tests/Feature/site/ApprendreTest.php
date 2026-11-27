@@ -43,3 +43,10 @@ test('la page présente les parcours et la validation par quiz à 70 %', functio
         ->assertSee('70 %')
         ->assertDontSee('10/20');
 });
+
+test("l'accueil ne vise plus les cabinets", function () {
+    $this->get('/')
+        ->assertOk()
+        ->assertSee('Pour les responsables de traitement')
+        ->assertDontSee('cabinets');
+});
