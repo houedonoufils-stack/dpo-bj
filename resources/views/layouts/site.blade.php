@@ -85,7 +85,7 @@
                     <x-a-completer :valeur="config('editeur.siege')" /><br>
                     RCCM : <x-a-completer :valeur="config('editeur.rccm')" /><br>
                     IFU : <x-a-completer :valeur="config('editeur.ifu')" /><br>
-                    Récépissé APDP : <x-a-completer :valeur="config('editeur.recepisse_apdp')" /><br>
+                    
                     <a href="{{ route('site.mentions') }}">Mentions légales</a> ·
                     <a href="{{ route('site.confidentialite') }}">Confidentialité</a>
                 </div>

@@ -13,7 +13,7 @@
             </p>
             <nav class="chips" aria-label="Aller à un service">
                 <a href="#accompagnement">Accompagnement à la mise en conformité</a>
-                <a href="#formation">Formation à Sitael et au métier de DPO</a>
+                <a href="#formation">Formation à l'outil Sitael </a>
             </nav>
         </div>
     </section>

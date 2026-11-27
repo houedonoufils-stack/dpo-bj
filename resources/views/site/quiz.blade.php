@@ -14,7 +14,7 @@
             </p>
             <div class="row">
                 <a class="btn pri" href="{{ route('login') }}">Accéder à mon quiz</a>
-                <a class="btn" href="{{ route('site.academie') }}">Voir les formations</a>
+                
             </div>
             <p class="small" style="margin-top:12px">
                 Le quiz est réservé aux participants d'une formation de l'Académie, présents jusqu'à la fin de la session.

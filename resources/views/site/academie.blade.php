@@ -6,7 +6,7 @@
 
     <section class="band hero" style="padding-bottom:clamp(28px,4vw,64px)">
         <div class="wrap">
-            <h1>Académie dpo.bj</h1>
+            <h1>Formation dpo.bj</h1>
             <p class="lead">
                 Six formations au droit du numérique, au métier de DPO, à la cybersécurité
                 et à la lutte contre la fraude, avec des travaux pratiques sur Sitael.

@@ -7,9 +7,9 @@
     {{-- 1. Présentation et aperçu du tableau de bord --}}
     <section class="band hero">
         <div class="wrap">
-            <h1>Sitael, l'outil qui gère votre conformité au Livre V</h1>
+            <h1>Sitael, l'outil qui vous aide à protéger vos données personnelles</h1>
             <p class="lead">
-                dpo.bj vous informe et vous accompagne. Sitael est l'outil avec lequel vous gérez au quotidien
+                Sitael est l'outil avec lequel vous gérez au quotidien
                 vos traitements, vos dossiers APDP, vos délais et vos preuves, sur le web et sur téléphone.
             </p>
             <div class="row">
