@@ -35,7 +35,7 @@
                         <h3 style="margin-top:8px">{{ $formation['titre'] }}</h3>
                         <p class="mut small">{{ $formation['texte'] }}</p>
 
-                        <p class="small"><b>Inspirée de :</b> {{ $formation['inspiree'] }}</p>
+                        
                         <p class="small"><b>Pour qui :</b> {{ $formation['public'] }}</p>
                         <p class="small"><b>Prérequis :</b> {{ $formation['prerequis'] }}</p>
                         <p class="small"><b>Format :</b> {{ $formation['format'] }}</p>
