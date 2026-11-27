@@ -57,6 +57,7 @@
     <section class="band fond-ciel">
         <div class="wrap">
             <h2>Les parcours</h2>
+            <p class="mut">Chaque formation réussie donne droit à une attestation de formation.</p>
             <div class="grid g4" style="margin-top:14px">
                 @foreach (config('apprendre.parcours') as $parcours)
                     <article class="card">

@@ -98,13 +98,13 @@ return [
         ],
         [
             'code' => 'ADB-CPD',
-            'titre' => 'Cybersécurité et protection des données (certificat)',
+            'titre' => 'Cybersécurité et protection des données',
             'duree' => '44 h',
             'inspiree' => 'Cnam CS12600A',
             'public' => 'Futurs DPO internes ou externes et référents données, avec une double culture juridique et cyber',
             'prerequis' => 'Bac+3/4 de préférence avec expérience, bonnes bases en droit des affaires, bonne familiarité avec le numérique',
             'format' => 'À son rythme, sur un ou deux semestres',
-            'texte' => "Un certificat qui réunit les modules ADB-DN1 et ADB-DCY, à suivre à son rythme sur un ou deux semestres.",
+            'texte' => "Un parcours qui réunit les modules ADB-DN1 et ADB-DCY, à suivre à son rythme sur un ou deux semestres.",
             'objectifs' => [
                 'Accéder aux fonctions de DPO interne ou externe, ou de référent données',
                 'Acquérir une double culture juridique et cyber',
@@ -114,10 +114,12 @@ return [
     ],
 
     // Parcours (cahier des charges, « Parcours et modalités »)
+        // Parcours (cahier des charges, « Parcours et modalités »).
+    // Chaque formation réussie donne droit à une attestation de formation, pas à un certificat.
     'parcours' => [
-        ['nom' => 'Certificat DPO', 'modules' => 'ADB-DN1, puis ADB-DPO avec une épreuve pratique sur Sitael', 'duree' => '56 h'],
-        ['nom' => 'Certificat Cybersécurité et protection des données', 'modules' => 'ADB-DN1 + ADB-DCY', 'duree' => '44 h'],
-        ['nom' => 'Certificat Lutte contre la fraude', 'modules' => 'ADB-LCF + projet tutoré', 'duree' => '20 h + projet'],
+        ['nom' => 'Parcours DPO', 'modules' => 'ADB-DN1, puis ADB-DPO avec une épreuve pratique sur Sitael', 'duree' => '56 h'],
+        ['nom' => 'Parcours Cybersécurité et protection des données', 'modules' => 'ADB-DN1 + ADB-DCY', 'duree' => '44 h'],
+        ['nom' => 'Parcours Lutte contre la fraude', 'modules' => 'ADB-LCF + projet tutoré', 'duree' => '20 h + projet'],
         ['nom' => 'Module seul', 'modules' => 'ADB-CYB ou tout autre module', 'duree' => '20 à 36 h'],
     ],
 

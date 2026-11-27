@@ -39,7 +39,9 @@ test('la page présente les parcours et la validation par quiz à 70 %', functio
     $this->get('/academie')
         ->assertOk()
         ->assertSee('Les parcours')
-        ->assertSee('Certificat DPO')
+        ->assertSee('Parcours DPO')
+        ->assertSee('attestation de formation')
+        ->assertDontSee('ertificat')
         ->assertSee('70 %')
         ->assertDontSee('10/20');
 });
