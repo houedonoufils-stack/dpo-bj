@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -69,5 +70,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function estAdmin(): bool
     {
         return $this->role_plateforme === 'admin';
+    }
+
+        /** Sessions animées par ce formateur. */
+    public function sessionsAnimees(): HasMany
+    {
+        return $this->hasMany(FormationSession::class, 'formateur_id');
     }
 }

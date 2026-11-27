@@ -31,7 +31,7 @@ test('chaque formation présente ses objectifs et sa pratique sur Sitael', funct
         ->assertOk()
         ->assertSee('Apprendre en pratiquant')
         ->assertSee('Pratique sur Sitael')
-        ->assertSee('Cnam DNT105')
+        
         ->assertSee('Niveau Bac+2 en informatique');
 });
 

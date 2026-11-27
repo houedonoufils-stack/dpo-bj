@@ -140,3 +140,39 @@ test('le tableau de bord affiche les compteurs et les prochaines sessions', func
         ->assertSee('Prochaines sessions')
         ->assertSee('Formation DPO de test');
 });
+
+test('un admin crée un formateur, qui reçoit un lien pour choisir son mot de passe', function () {
+    Illuminate\Support\Facades\Notification::fake();
+
+    $this->actingAs(creerAdmin());
+
+    Livewire\Livewire::test(App\Filament\Resources\Formateurs\Pages\CreateFormateur::class)
+        ->fillForm(['name' => 'Awa Formatrice', 'email' => 'awa@exemple.bj'])
+        ->call('create')
+        ->assertHasNoFormErrors();
+
+    $formateur = User::where('email', 'awa@exemple.bj')->firstOrFail();
+
+    expect($formateur->role_plateforme)->toBe('formateur')
+        ->and($formateur->hasVerifiedEmail())->toBeTrue();
+
+    Illuminate\Support\Facades\Notification::assertSentTo($formateur, Illuminate\Auth\Notifications\ResetPassword::class);
+});
+
+test('une adresse en majuscules est refusée pour un formateur', function () {
+    $this->actingAs(creerAdmin());
+
+    Livewire\Livewire::test(App\Filament\Resources\Formateurs\Pages\CreateFormateur::class)
+        ->fillForm(['name' => 'Awa Formatrice', 'email' => 'Awa@Exemple.bj'])
+        ->call('create')
+        ->assertHasFormErrors(['email']);
+});
+
+test('un formateur ne peut pas gérer les autres formateurs', function () {
+    $formateur = User::factory()->create();
+    $formateur->forceFill(['role_plateforme' => 'formateur'])->save();
+
+    $this->actingAs($formateur)
+        ->get('/admin/formateurs')
+        ->assertForbidden();
+});
