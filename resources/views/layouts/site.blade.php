@@ -100,7 +100,7 @@
                     <a href="mailto:contact@dpo.bj">contact@dpo.bj</a><br>
                     Téléphone et WhatsApp : <x-a-completer :valeur="config('editeur.telephone')" /><br>
                     DPO de l'éditeur : <a href="mailto:dpo@dpo.bj">dpo@dpo.bj</a><br>
-                    État du service : statut.dpo.bj
+                    État du service : <a href="mailto:houedonou.fils@gmail.com"></a>houedonou.fils@gmail.com</a>
                 </div>
             </div>
             <p class="small bottom">

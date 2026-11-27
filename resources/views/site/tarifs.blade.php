@@ -18,7 +18,7 @@
     </section>
 
     <section class="band">
-        <div class="wrap grid g4 offres">
+            <div class="wrap grid g3 offres">
             @foreach ($offres as $offre)
                 <article @class(['card', 'offre', 'offre-phare' => $offre['mise_en_avant']])>
                     @if ($offre['mise_en_avant'])

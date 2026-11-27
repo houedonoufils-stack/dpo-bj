@@ -25,3 +25,21 @@ test('les ressources présentent les modèles à venir', function () {
 
     $reponse->assertSee('Bientôt');
 });
+
+test('chaque formation présente ses objectifs et sa pratique sur Sitael', function () {
+    $this->get('/formation')
+        ->assertOk()
+        ->assertSee('Apprendre en pratiquant')
+        ->assertSee('Pratique sur Sitael')
+        ->assertSee('Cnam DNT105')
+        ->assertSee('Niveau Bac+2 en informatique');
+});
+
+test('la page présente les parcours et la validation par quiz à 70 %', function () {
+    $this->get('/formation')
+        ->assertOk()
+        ->assertSee('Les parcours')
+        ->assertSee('Certificat DPO')
+        ->assertSee('70 %')
+        ->assertDontSee('10/20');
+});

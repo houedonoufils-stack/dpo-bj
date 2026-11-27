@@ -27,7 +27,7 @@ class ProchainesSessions extends TableWidget
                 ->with(['formation', 'formateur'])
                 ->withCount('inscriptions')
                 ->where('statut', 'planifiee')
-                ->where('debut', '>=', now())
+                ->where('fin', '>=', now())
                 ->orderBy('debut')
                 ->limit(5))
             ->paginated(false)

@@ -21,11 +21,11 @@ class StatsAcademie extends StatsOverviewWidget
     {
         $sessionsAVenir = FormationSession::query()
             ->where('statut', 'planifiee')
-            ->where('debut', '>=', now());
+            ->where('fin', '>=', now());
 
         $inscrits = Inscription::query()
             ->where('statut', '!=', 'annule')
-            ->whereHas('session', fn ($q) => $q->where('statut', 'planifiee')->where('debut', '>=', now()))
+            ->whereHas('session', fn ($q) => $q->where('statut', 'En cours ou pas encore commencées')->where('fin', '>=', now()))
             ->count();
 
         return [
