@@ -16,6 +16,9 @@ use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use Illuminate\Auth\Passwords\PasswordBroker;
+use Illuminate\Support\Facades\Password;
+
 /**
  * @property int $id
  * @property string $name
@@ -76,5 +79,16 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function sessionsAnimees(): HasMany
     {
         return $this->hasMany(FormationSession::class, 'formateur_id');
+    }
+        /**
+     * Crée le jeton secret d'un lien « choisir son mot de passe »
+     * (même mécanisme que « mot de passe oublié »).
+     */
+    public function creerJetonMotDePasse(): string
+    {
+        /** @var PasswordBroker $broker */
+        $broker = Password::broker();
+
+        return $broker->createToken($this);
     }
 }

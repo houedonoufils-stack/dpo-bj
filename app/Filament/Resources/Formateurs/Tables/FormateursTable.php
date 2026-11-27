@@ -9,7 +9,8 @@ use Filament\Notifications\Notification;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Password;
+
+use App\Notifications\InvitationFormateur;
 
 class FormateursTable
 {
@@ -43,11 +44,9 @@ class FormateursTable
                     ->requiresConfirmation()
                     ->modalDescription('Un nouveau lien pour choisir son mot de passe sera envoyé à ce formateur.')
                     ->action(function (User $record): void {
-                        $statut = Password::broker()->sendResetLink(['email' => $record->email]);
+                        $record->notify(new InvitationFormateur($record->creerJetonMotDePasse()));
 
-                        $statut === Password::RESET_LINK_SENT
-                            ? Notification::make()->title('Lien envoyé.')->success()->send()
-                            : Notification::make()->title('Lien non envoyé : réessayez dans une minute.')->warning()->send();
+                        Notification::make()->title('Nouveau lien envoyé.')->success()->send();
                     }),
 
                 Action::make('retirerRole')

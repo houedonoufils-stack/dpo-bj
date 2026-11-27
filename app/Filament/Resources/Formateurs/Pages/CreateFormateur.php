@@ -6,8 +6,10 @@ use App\Filament\Resources\Formateurs\FormateurResource;
 use App\Models\User;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Password;
+
 use Illuminate\Support\Str;
+
+use App\Notifications\InvitationFormateur;
 
 class CreateFormateur extends CreateRecord
 {
@@ -27,7 +29,8 @@ class CreateFormateur extends CreateRecord
         ])->save();
 
         // Le formateur choisit lui-même son mot de passe grâce à ce lien
-        Password::broker()->sendResetLink(['email' => $formateur->email]);
+                // Le formateur choisit lui-même son mot de passe grâce au lien de l'invitation
+                        $formateur->notify(new InvitationFormateur($formateur->creerJetonMotDePasse()));
 
         return $formateur;
     }

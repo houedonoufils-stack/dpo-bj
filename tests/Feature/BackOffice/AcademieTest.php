@@ -156,7 +156,7 @@ test('un admin crée un formateur, qui reçoit un lien pour choisir son mot de p
     expect($formateur->role_plateforme)->toBe('formateur')
         ->and($formateur->hasVerifiedEmail())->toBeTrue();
 
-    Illuminate\Support\Facades\Notification::assertSentTo($formateur, Illuminate\Auth\Notifications\ResetPassword::class);
+        Illuminate\Support\Facades\Notification::assertSentTo($formateur, App\Notifications\InvitationFormateur::class);
 });
 
 test('une adresse en majuscules est refusée pour un formateur', function () {
@@ -175,4 +175,14 @@ test('un formateur ne peut pas gérer les autres formateurs', function () {
     $this->actingAs($formateur)
         ->get('/admin/formateurs')
         ->assertForbidden();
+});
+
+test("l'invitation du formateur est en français et sans donnée personnelle", function () {
+    $formateur = User::factory()->create(['name' => 'Awa Formatrice']);
+
+    $mail = (new App\Notifications\InvitationFormateur('jeton-test'))->toMail($formateur);
+
+    expect($mail->subject)->toBe('Votre accès formateur au back-office dpo.bj')
+        ->and($mail->actionText)->toBe('Choisir mon mot de passe')
+        ->and(implode(' ', $mail->introLines))->not->toContain('Awa');
 });
