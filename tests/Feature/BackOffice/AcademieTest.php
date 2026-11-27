@@ -153,8 +153,9 @@ test('un admin crée un formateur, qui reçoit un lien pour choisir son mot de p
 
     $formateur = User::where('email', 'awa@exemple.bj')->firstOrFail();
 
-    expect($formateur->role_plateforme)->toBe('formateur')
-        ->and($formateur->hasVerifiedEmail())->toBeTrue();
+        expect($formateur->role_plateforme)->toBe('formateur')
+            ->and($formateur->hasVerifiedEmail())->toBeTrue()
+            ->and($formateur->currentTeam)->not->toBeNull();
 
         Illuminate\Support\Facades\Notification::assertSentTo($formateur, App\Notifications\InvitationFormateur::class);
 });
