@@ -97,7 +97,7 @@
                 </div>
             </div>
             <p class="small bottom">
-                © {{ date('Y') }} dpo.bj · Sitael, par dpo.bj · Édité par <x-a-completer :valeur="config('editeur.raison_sociale')" />
+                © {{ date('Y') }} dpo.bj · Édité par <x-a-completer :valeur="config('editeur.raison_sociale')" />
             </p>
         </div>
     </footer>
