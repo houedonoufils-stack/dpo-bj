@@ -4,12 +4,12 @@
 
 @section('content')
 
-    {{-- 1. Accroche --}}
+    {{-- 1. Accroche (bleu ciel avec quadrillage) --}}
     <section class="band hero">
         <div class="wrap grid g2" style="align-items:center">
             <div>
                 <span class="tag t-warn">Livre V du Code du numérique du Bénin</span>
-                <h1 style="margin-top:14px">Votre conformité aux données personnelles, de bout en bout</h1>
+                <h1 style="margin-top:14px">Votre conformité aux données personnelles, <span class="accent">de bout en bout</span></h1>
                 <p class="lead">
                     Un outil pour gérer vos formalités APDP, des experts pour vous accompagner, des formations
                     pour monter en compétence. Pour les entreprises, les associations et les organismes publics.
@@ -151,10 +151,10 @@
     </section>
 
     {{-- 9. Appel final --}}
-    <section class="band hero" style="padding-bottom:clamp(28px,4vw,64px)">
-        <div class="wrap" style="text-align:center">
+    <section class="band appel">
+        <div class="wrap">
             <h2>Faites votre diagnostic gratuit en 5 minutes</h2>
-            <p class="lead" style="margin:0 auto 18px">
+            <p>
                 10 questions pour connaître vos formalités probables et savoir si un DPO est obligatoire.
             </p>
             <div class="row" style="justify-content:center">
