@@ -7,14 +7,48 @@ use Illuminate\View\View;
 
 class LogicielController extends Controller
 {
-    /** Page « Outil » : Sitael web et mobile sur une seule page (demande du porteur du projet). */
+    /**
+     * Page « Outil » : Sitael web et mobile sur une seule page.
+     * Elle reçoit aussi les blocs qui présentaient Sitael sur l'ancien accueil
+     * (aperçu, vidéo, piliers, 8 étapes, secteurs).
+     */
     public function outil(): View
     {
         return view('site.outil', [
+            'piliers' => $this->piliers(),
             'modules' => $this->modules(),
-            'garanties' => $this->garanties(),
+            'etapes' => $this->etapes(),
+            'secteurs' => config('secteurs'),
             'ecrans' => $this->ecrans(),
+            'garanties' => $this->garanties(),
         ]);
+    }
+
+    /** Les 5 piliers de Sitael (venus de l'ancien accueil). */
+    private function piliers(): array
+    {
+        return [
+            ['titre' => 'Déclarer', 'texte' => 'Déclaration préalable (art. 405), normes simplifiées et dispenses identifiées automatiquement.'],
+            ['titre' => 'Autoriser', 'texte' => "Les 8 catégories de l'art. 407 repérées, dossier complet avec annexes et pièces."],
+            ['titre' => 'Protéger', 'texte' => 'Registre (art. 435), AIPD (art. 428), sécurité (art. 426), transferts.'],
+            ['titre' => 'Notifier', 'texte' => 'Violations notifiées « sans délai » (art. 427), avec un compte à rebours interne de 72 h.'],
+            ['titre' => 'Prouver', 'texte' => 'Accusés de réception, récépissés, consentements scellés, rapport annuel.'],
+        ];
+    }
+
+    /** Le parcours en 8 étapes (venu de l'ancien accueil). */
+    private function etapes(): array
+    {
+        return [
+            ['titre' => 'Découverte', 'texte' => 'Diagnostic gratuit, webinaire ou recommandation.'],
+            ['titre' => "Compte d'essai", 'texte' => 'Environ 15 minutes, validé par e-mail ou SMS.'],
+            ['titre' => 'Onboarding', 'texte' => "Secteur, taille, public ou privé, établi au Bénin ou à l'étranger, DPO ou non."],
+            ['titre' => 'Inventaire', 'texte' => 'Traitements types de votre secteur, régime qualifié, AIPD repérées.'],
+            ['titre' => 'Plan de formalités', 'texte' => 'Déclarations, autorisations, AIPD et désignation du DPO, dossiers préremplis.'],
+            ['titre' => 'Dépôt et suivi', 'texte' => 'Accusé de réception archivé, alerte à J+45, échéance à J+60, relance générée.'],
+            ['titre' => 'Pilotage continu', 'texte' => 'Registre, droits, consentements, violations, sécurité, rapport annuel.'],
+            ['titre' => 'Souscription', 'texte' => "À la fin de l'essai ; export complet sous 30 jours en fin de contrat."],
+        ];
     }
 
     /** Les modules de Sitael web (sections 3 et 4.1 du cahier des charges). 'phare' = mis en avant. */
